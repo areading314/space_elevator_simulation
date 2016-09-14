@@ -25,6 +25,14 @@
       (is (Vector3D-equal (Vector3D. 1 3 5)
                           (Vector3D-add v1 v2))))))
 
+(deftest test-Vector3D-sum
+  (testing "Can sum vectors"
+    (let [v1 (Vector3D. 1 2 3)
+          v2 (Vector3D. 1 1 1)
+          v3 (Vector3D. 1 0 0)]
+      (is (Vector3D-equal (Vector3D-sum v1 v2 v3)
+                          (Vector3D. 3 3 4))))))
+
 (deftest test-Particle
   (testing "Can create a particle"
     (let [p (Particle. (Vector3D. 1 2 3)

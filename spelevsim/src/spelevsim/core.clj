@@ -17,6 +17,10 @@
              (+ (:z v1)
                 (:z v2))))
 
+(defn Vector3D-sum [& vs]
+  "Returns the sum of vectors in vs"
+  (reduce Vector3D-add vs))
+
 (defrecord Particle [pos vel mass])
 
 (defrecord Simulation [particles])
