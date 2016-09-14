@@ -18,6 +18,13 @@
       (is (Vector3D-equal v1 v3))
       (is (not (Vector3D-equal v1 v2))))))
 
+(deftest test-Vector3D-add
+  (testing "Can add 2 vectors"
+    (let [v1 (Vector3D. 2 4 6)
+          v2 (Vector3D. -1 -1 -1)]
+      (is (Vector3D-equal (Vector3D. 1 3 5)
+                          (Vector3D-add v1 v2))))))
+
 (deftest test-Particle
   (testing "Can create a particle"
     (let [p (Particle. (Vector3D. 1 2 3)
