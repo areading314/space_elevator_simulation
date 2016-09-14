@@ -1,7 +1,7 @@
 (ns spelevsim.core-test
   (:require [clojure.test :refer :all]
             [spelevsim.core :refer :all])
-  (:import [spelevsim.core Vector3D Particle]))
+  (:import [spelevsim.core Vector3D Particle Simulation]))
 
 (deftest test-Vector3D
   (testing "Can create a 3D vector"
@@ -33,3 +33,14 @@
       (is (= (:pos p) (Vector3D. 1 2 3)))
       (is (= (:vel p) (Vector3D. 1 1 1)))
       (is (= (:mass p) 5)))))
+
+
+(deftest test-Simulation
+  (testing "Can create a simulation"
+    (let [sim (Simulation. [(Particle. (Vector3D. 1 2 3)
+                                       (Vector3D. -1 -1 -1)
+                                       5)
+                            (Particle. (Vector3D. 2 4 6)
+                                       (Vector3D. 1 0 0)
+                                       10)])]
+      (is (= (count (:particles sim)) 2)))))
