@@ -3,6 +3,15 @@
             [spelevsim.core :refer :all])
   (:import [spelevsim.core Vector3D Particle Simulation]))
 
+(deftest test-planet-gravity-function
+  (testing "Can create gravity functions"
+    (is (function? (planet-gravity-function 100 100)))))
+
+(deftest test-earth-gravity-function
+  (testing "Can calculate earth gravity"
+    (is (<= 9.81 (earth-gravity 200)))
+    (is (>= 9.82 (earth-gravity 200)))))
+
 (deftest test-Vector3D
   (testing "Can create a 3D vector"
     (let [v (Vector3D. 1 2 3)]
