@@ -3,14 +3,14 @@
             [spelevsim.core :refer :all])
   (:import [spelevsim.core Vector3D Particle Simulation]))
 
-(deftest test-planet-gravity-function
+(deftest test-gravitational-acceleration
   (testing "Can create gravity functions"
-    (is (function? (planet-gravity-function 100 100)))))
+    (is (function? (gravitational-acceleration-function 100 100)))))
 
 (deftest test-earth-gravity-function
   (testing "Can calculate earth gravity"
-    (is (<= 9.81 (earth-gravity 200)))
-    (is (>= 9.82 (earth-gravity 200)))))
+    (is (<= 9.81 (earth-gravity-acceleration 200)))
+    (is (>= 9.82 (earth-gravity-acceleration 200)))))
 
 (deftest test-Vector3D
   (testing "Can create a 3D vector"
@@ -41,6 +41,24 @@
           v3 (Vector3D. 1 0 0)]
       (is (Vector3D-equal (Vector3D-sum v1 v2 v3)
                           (Vector3D. 3 3 4))))))
+
+(deftest test-Vector3D-difference
+  (testing "Can subtract vectors"
+    (let [v1 (Vector3D. 1 2 3)
+          v2 (Vector3D. 2 3 4)]
+      (is (Vector3D-equal (Vector3D-difference v1 v2)
+                          (Vector3D. -1 -1 -1))))))
+
+(deftest test-Vector3D-magnitude
+  (testing "Can calculate the magnitude of a vector"
+    (let [v1 (Vector3D. 3 0 4)]
+      (is (= (Vector3D-magnitude v1) 5)))))
+
+(deftest test-Vector3D-product
+  (testing "Can calculate scalar product of vectors"
+    (let [v1 (Vector3D. 1 2 3)
+          v2 (Vector3D. 2 4 6)]
+      (is (= (Vector3D-product v1 v2) 28)))))
 
 (deftest test-Particle
   (testing "Can create a particle"
